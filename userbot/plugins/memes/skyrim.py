@@ -4,13 +4,13 @@ import time
 
 from pyrogram import filters
 from pyrogram.types import Message
-from userbot import UserBot
-from userbot.helpers.PyroHelpers import ReplyCheck
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.helpers.PyroHelpers import ReplyCheck
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(filters.command(["skyrim", "skill"], ".") & filters.me)
-async def skyrim(bot: UserBot, message: Message):
+@Bonten.on_message(filters.command(["skyrim", "skill"], ".") & filters.me)
+async def skyrim(bot: Bonten, message: Message):
     if len(message.command) >= 2:
         text = message.command[1]
     else:
@@ -25,11 +25,11 @@ async def skyrim(bot: UserBot, message: Message):
         try:
             if os.name == "nt":
                 os.system(
-                    f'venv\\Scripts\\activate && python userbot\\helpers\\skyrim.py "{text}" {level}'
+                    f'venv\\Scripts\\activate && python Bonten\\helpers\\skyrim.py "{text}" {level}'
                 )
             else:
                 os.system(
-                    f'. venv/bin/activate && python userbot//helpers//skyrim.py "{text}" {level}'
+                    f'. venv/bin/activate && python Bonten//helpers//skyrim.py "{text}" {level}'
                 )
         except Exception:
             await message.edit("```Failed to generate skill```")
@@ -39,7 +39,7 @@ async def skyrim(bot: UserBot, message: Message):
         try:
             await bot.send_photo(
                 message.chat.id,
-                "userbot/downloads/skyrim.png",
+                "Bonten/downloads/skyrim.png",
                 reply_to_message_id=ReplyCheck(message),
             )
             await message.delete()
@@ -48,7 +48,7 @@ async def skyrim(bot: UserBot, message: Message):
             time.sleep(2)
             await message.delete()
         finally:
-            os.remove("userbot/downloads/skyrim.png")
+            os.remove("Bonten/downloads/skyrim.png")
     except Exception as e:
         print(e)
 
