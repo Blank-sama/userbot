@@ -3,11 +3,11 @@ import asyncio
 from pyrogram import filters
 from pyrogram.types import Message
 
-from userbot import UserBot, ALLOWED_USERS
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten, ALLOWED_USERS
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(
+@Bonten.on_message(
     filters.command(["l", "lyrics"], ".") & (filters.me | filters.user(ALLOWED_USERS))
 )
 async def send_lyrics(_, message: Message):
@@ -29,11 +29,11 @@ async def send_lyrics(_, message: Message):
             return
 
         await message.edit(f"Getting lyrics for `{song_name}`")
-        lyrics_results = await UserBot.get_inline_bot_results("ilyricsbot", song_name)
+        lyrics_results = await Bonten.get_inline_bot_results("ilyricsbot", song_name)
 
         try:
             # send to Saved Messages because hide_via doesn't work sometimes
-            saved = await UserBot.send_inline_bot_result(
+            saved = await Bonten.send_inline_bot_result(
                 chat_id="me",
                 query_id=lyrics_results.query_id,
                 result_id=lyrics_results.results[0].id,
@@ -42,14 +42,14 @@ async def send_lyrics(_, message: Message):
             await asyncio.sleep(3)
 
             # forward from Saved Messages
-            await UserBot.copy_message(
+            await Bonten.copy_message(
                 chat_id=message.chat.id,
                 from_chat_id="me",
                 message_id=saved.updates[1].message.id,
             )
 
             # delete the message from Saved Messages
-            await UserBot.delete_messages("me", saved.updates[1].message.id)
+            await Bonten.delete_messages("me", saved.updates[1].message.id)
         except TimeoutError:
             await message.edit("That didn't work out")
             await asyncio.sleep(2)
