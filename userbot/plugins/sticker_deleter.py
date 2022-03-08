@@ -2,12 +2,12 @@ import asyncio
 
 from pyrogram import filters
 from pyrogram.types import Message
-from userbot import UserBot
-from userbot.database.sticker_deleter import StickerDeleter
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.database.sticker_deleter import StickerDeleter
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(filters.command("stickerdel", ".") & filters.me)
+@Bonten.on_message(filters.command("stickerdel", ".") & filters.me)
 async def delete_sticker_here(_, message: Message):
     sticker_message = message.reply_to_message
     chat_details = StickerDeleter().find_chat_id(sticker_message)
@@ -30,7 +30,7 @@ async def delete_sticker_here(_, message: Message):
     await message.delete()
 
 
-@UserBot.on_message(filters.command("stickerdel", "!") & filters.me)
+@Bonten.on_message(filters.command("stickerdel", "!") & filters.me)
 async def not_delete_sticker_here(_, message: Message):
     if StickerDeleter().delete_sticker_in_chat(message) is True:
         await message.edit("```Sticker deleter disabled for this chat```")
@@ -41,7 +41,7 @@ async def not_delete_sticker_here(_, message: Message):
     await message.delete()
 
 
-@UserBot.on_message(filters.incoming & filters.sticker)
+@Bonten.on_message(filters.incoming & filters.sticker)
 async def stickered(_, message: Message):
     try:
         chat_details = StickerDeleter().find_chat_id(message) 
