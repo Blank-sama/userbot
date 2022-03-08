@@ -1,7 +1,7 @@
 from pyrogram import filters
 from pyrogram.types import Message
-from userbot import UserBot
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.plugins.help import add_command_help
 
 dhivehi_text_memes = {
     "bidi": {"meme": "🚬", "help": "Bidi"},
@@ -37,7 +37,7 @@ for dv in dhivehi_text_memes:
     fixed_memes_help.append([command, dhivehi_text_memes[dv]["help"]])
 
 
-@UserBot.on_message(filters.command(dhivehi_text_memes_commands, ".") & filters.me)
+@Bonten.on_message(filters.command(dhivehi_text_memes_commands, ".") & filters.me)
 async def dhivehi_memes(_, message: Message):
     cmd = message.command[0]
 
