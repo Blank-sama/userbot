@@ -2,7 +2,7 @@ import aiohttp
 from yourls import YOURLSClient
 from yourls.exceptions import YOURLSURLExistsError, YOURLSKeywordExistsError
 
-from userbot import YOURLS_URL, YOURLS_KEY
+from Bonten import YOURLS_URL, YOURLS_KEY
 
 
 async def shorten_url(url, keyword):
