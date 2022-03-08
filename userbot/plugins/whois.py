@@ -7,9 +7,9 @@ from pyrogram.raw import functions
 from pyrogram.types import Message, User
 from pyrogram.errors import PeerIdInvalid
 
-from userbot import UserBot
-from userbot.helpers.PyroHelpers import ReplyCheck
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.helpers.PyroHelpers import ReplyCheck
+from Bonten.plugins.help import add_command_help
 
 WHOIS = (
     '**WHO IS "{full_name}"?**\n'
@@ -62,7 +62,7 @@ def LastOnline(user: User):
         )
 
 
-async def GetCommon(bot: UserBot, get_user):
+async def GetCommon(bot: Bonten, get_user):
     common = await bot.send(
         functions.messages.GetCommonChats(
             user_id=await bot.resolve_peer(get_user), max_id=0, limit=0
@@ -79,7 +79,7 @@ def ProfilePicUpdate(user_pic):
     return datetime.fromtimestamp(user_pic[0].date).strftime("%d.%m.%Y, %H:%M:%S")
 
 
-@UserBot.on_message(filters.command("whois", [".", ""]) & filters.me)
+@Bonten.on_message(filters.command("whois", [".", ""]) & filters.me)
 async def who_is(bot: UserBot, message: Message):
     cmd = message.command
     if not message.reply_to_message and len(cmd) == 1:
