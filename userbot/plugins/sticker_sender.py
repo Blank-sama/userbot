@@ -1,7 +1,7 @@
 from pyrogram import filters
 from pyrogram.types import Message
 from pyrogram.errors import ChatSendStickersForbidden
-from userbot import UserBot
+from Bonten import Bonten
 
 SETS = {
     1: [
@@ -17,8 +17,8 @@ SETS = {
 }
 
 
-@UserBot.on_message(filters.command(["sticker"], ".") & filters.me)
-async def sticker_sender(bot: UserBot, message: Message):
+@Bonten.on_message(filters.command(["sticker"], ".") & filters.me)
+async def sticker_sender(bot: Bonten, message: Message):
     if len(message.command) > 1:
         set_to_send = message.command[1]
 
@@ -38,6 +38,6 @@ async def sticker_sender(bot: UserBot, message: Message):
         await message.delete()
 
 
-# @UserBot.on_message(filters.sticker & filters.me)
+# @Bonten.on_message(filters.sticker & filters.me)
 # async def sticker_sender(_, message: Message):
 #     print(message.sticker.file_id)
