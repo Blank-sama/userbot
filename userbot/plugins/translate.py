@@ -3,12 +3,12 @@ import asyncio
 import aiohttp
 from pyrogram import filters
 from pyrogram.types import Message
-from userbot import UserBot
-from userbot import YANDEX_API_KEY
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten import YANDEX_API_KEY
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(filters.command(["tr", "trans"], ".") & filters.me)
+@Bonten.on_message(filters.command(["tr", "trans"], ".") & filters.me)
 async def translate(_, message: Message):
     if not YANDEX_API_KEY:
         await message.edit(
@@ -47,7 +47,7 @@ async def translate(_, message: Message):
                 await message.edit(translated)
 
 
-@UserBot.on_message(filters.command("yoda", ".") & filters.me)
+@Bonten.on_message(filters.command("yoda", ".") & filters.me)
 async def yoda(_, message: Message):
     if message.reply_to_message:
         txt = message.reply_to_message.text or message.reply_to_message.caption
