@@ -5,40 +5,40 @@ from random import choice, randint
 from pyrogram import filters
 from pyrogram.types import Message
 
-from userbot import UserBot
-from userbot.helpers.PyroHelpers import GetUserMentionable
-from userbot.helpers.aiohttp_helper import AioHttp
-from userbot.helpers.constants import Fs, MEMES, Weebify
-from userbot.helpers.utility import get_mock_text
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.helpers.PyroHelpers import GetUserMentionable
+from Bonten.helpers.aiohttp_helper import AioHttp
+from Bonten.helpers.constants import Fs, MEMES, Weebify
+from Bonten.helpers.utility import get_mock_text
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(filters.command("lorem", ".") & filters.me)
+@Bonten.on_message(filters.command("lorem", ".") & filters.me)
 async def lorem(_, message: Message):
     response = await AioHttp().get_text('https://loripsum.net/api/plaintext')
     await message.edit(response)
 
 
-@UserBot.on_message(filters.command("nice", ".") & filters.me)
+@Bonten.on_message(filters.command("nice", ".") & filters.me)
 async def nice(_, message: Message):
     await message.edit("NICENICENICENICE")
 
 
-@UserBot.on_message(filters.command("reverse", ".") & filters.me)
+@Bonten.on_message(filters.command("reverse", ".") & filters.me)
 async def reverse(_, message: Message):
     await message.edit(
         text=MEMES.REVERSE,
     )
 
 
-@UserBot.on_message(filters.command("cock", ".") & filters.me)
+@Bonten.on_message(filters.command("cock", ".") & filters.me)
 async def cock(_, message: Message):
     await message.edit(
         text=MEMES.COCK,
     )
 
 
-@UserBot.on_message(filters.command("slap", ".") & filters.me)
+@Bonten.on_message(filters.command("slap", ".") & filters.me)
 async def slap(_, message: Message):
     if message.reply_to_message is None:
         await message.edit(
@@ -73,7 +73,7 @@ async def slap(_, message: Message):
             )
 
 
-@UserBot.on_message(
+@Bonten.on_message(
     (filters.command("-_-", "") | filters.command("ok", ".")) & filters.me
 )
 async def ok(_, message: Message):
@@ -83,7 +83,7 @@ async def ok(_, message: Message):
         await message.edit(okay, parse_mode=None)
 
 
-@UserBot.on_message(
+@Bonten.on_message(
     (filters.command(";_;", "") | filters.command(["sad", "cri"], ".")) & filters.me
 )
 async def sad_cri(_, message: Message):
@@ -93,7 +93,7 @@ async def sad_cri(_, message: Message):
         await message.edit(cri, parse_mode=None)
 
 
-@UserBot.on_message(filters.regex(r"^\.?oof$") & filters.me)
+@Bonten.on_message(filters.regex(r"^\.?oof$") & filters.me)
 async def send_oof(_, message: Message):
     oof = "Oo "
     for _ in range(10):
@@ -101,7 +101,7 @@ async def send_oof(_, message: Message):
         await message.edit(oof, parse_mode=None)
 
 
-@UserBot.on_message(filters.command("mockt", ".") & filters.me)
+@Bonten.on_message(filters.command("mockt", ".") & filters.me)
 async def mock_text(_, message: Message):
     cmd = message.command
 
@@ -126,24 +126,24 @@ async def mock_text(_, message: Message):
     await message.edit(reply_text)
 
 
-@UserBot.on_message(filters.command("brain", ".") & filters.me)
+@Bonten.on_message(filters.command("brain", ".") & filters.me)
 async def brain(_, message: Message):
     for x in MEMES.BRAIN:
         await asyncio.sleep(0.35)
         await message.edit(x)
 
 
-@UserBot.on_message(filters.command("f", ".", case_sensitive=True) & filters.me)
+@Bonten.on_message(filters.command("f", ".", case_sensitive=True) & filters.me)
 async def pay_respects(_, message: Message):
     await message.edit(Fs().F)
 
 
-@UserBot.on_message(filters.command("F", ".", case_sensitive=True) & filters.me)
+@Bonten.on_message(filters.command("F", ".", case_sensitive=True) & filters.me)
 async def pay_respects_new(_, message: Message):
     await message.edit(Fs.BIG_F)
 
 
-@UserBot.on_message(filters.command("f", "#") & filters.me)
+@Bonten.on_message(filters.command("f", "#") & filters.me)
 async def calligraphic_f(_, message: Message):
     await message.edit(Fs.FANCY_F)
 
@@ -156,7 +156,7 @@ def weebify_text(raw_text):
     return raw_text
 
 
-@UserBot.on_message(filters.command(["weeb", "weebify"], ".") & filters.me)
+@Bonten.on_message(filters.command(["weeb", "weebify"], ".") & filters.me)
 async def weebify(_, message: Message):
     cmd = message.command
 
@@ -174,7 +174,7 @@ async def weebify(_, message: Message):
     await message.edit(weebify_text(raw_text))
 
 
-@UserBot.on_message(filters.command("vapor", ".") & filters.me)
+@Bonten.on_message(filters.command("vapor", ".") & filters.me)
 async def vapor(_, message: Message):
     cmd = message.command
 
@@ -202,7 +202,7 @@ async def vapor(_, message: Message):
     await message.edit("".join(reply_text))
 
 
-@UserBot.on_message(filters.command("stretch", ".") & filters.me)
+@Bonten.on_message(filters.command("stretch", ".") & filters.me)
 async def stretch(_, message: Message):
     cmd = message.command
 
@@ -224,21 +224,21 @@ async def stretch(_, message: Message):
     await message.edit(reply_text)
 
 
-@UserBot.on_message(filters.command("beemoviescript", ".") & filters.me)
+@Bonten.on_message(filters.command("beemoviescript", ".") & filters.me)
 async def bee_movie_script(_, message: Message):
     await message.edit(
         "Here is the entire Bee Movie script.\nhttps://nekobin.com/bevodokate"
     )
 
 
-@UserBot.on_message(filters.command(["ht"], ".") & filters.me)
+@Bonten.on_message(filters.command(["ht"], ".") & filters.me)
 async def heads_tails(_, message: Message):
     coin_sides = ["Heads", "Tails"]
     ht = f"Heads or Tails? `{choice(coin_sides)}`"
     await message.edit(ht)
 
 
-@UserBot.on_message(filters.command(["otherwise", 'other'], ".") & filters.me)
+@Bonten.on_message(filters.command(["otherwise", 'other'], ".") & filters.me)
 async def youd_think_so_but_this_says_otherwise(_, message: Message):
     disable_web_page_preview = True
     if len(message.command) > 1:
@@ -250,7 +250,7 @@ async def youd_think_so_but_this_says_otherwise(_, message: Message):
     )
 
 
-@UserBot.on_message(filters.command("reverset", ".") & filters.me)
+@Bonten.on_message(filters.command("reverset", ".") & filters.me)
 async def text_reverse(_, message: Message):
     cmd = message.command
 
@@ -268,17 +268,17 @@ async def text_reverse(_, message: Message):
     await message.edit(reverse_text[::-1])
 
 
-@UserBot.on_message(filters.me & filters.command(["shg", "shrug"], "."))
+@Bonten.on_message(filters.me & filters.command(["shg", "shrug"], "."))
 async def shrug(_, message):
     await message.edit(choice(MEMES.SHRUGS))
 
 
-@UserBot.on_message(filters.me & filters.command(["tableflip", "tflip"], "."))
+@Bonten.on_message(filters.me & filters.command(["tableflip", "tflip"], "."))
 async def table_flip(_, message):
     await message.edit(choice(MEMES.TABLE_FLIPS))
 
 
-@UserBot.on_message(filters.me & filters.command("flip", "."))
+@Bonten.on_message(filters.me & filters.command("flip", "."))
 async def flip_text(_, message):
     cmd = message.command
 
@@ -306,7 +306,7 @@ async def flip_text(_, message):
         await message.edit(text)
 
 
-@UserBot.on_message(filters.me & filters.command('silence', '.'))
+@Bonten.on_message(filters.me & filters.command('silence', '.'))
 async def silence_wench(_, message):
     await message.edit("Silence wench. Do not speak of the forbidden scripture to me. I was there when it was written.")
 
