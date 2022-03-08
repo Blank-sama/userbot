@@ -4,8 +4,8 @@ from random import randint
 
 from pyrogram import filters
 from pyrogram.types import Message
-from userbot import UserBot
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.plugins.help import add_command_help
 
 emojis = {
     "moon": list("🌗🌘🌑🌒🌓🌔🌕🌖"),
@@ -17,7 +17,7 @@ emojis = {
 emoji_commands = [x for x in emojis]
 
 
-@UserBot.on_message(filters.command(emoji_commands, ".") & filters.me)
+@Bonten.on_message(filters.command(emoji_commands, ".") & filters.me)
 async def emoji_cycle(_, message: Message):
     deq = deque(emojis[message.command[0]])
     try:
@@ -38,11 +38,11 @@ special_emojis_dict = {
 special_emoji_commands = [x for x in special_emojis_dict]
 
 
-@UserBot.on_message(filters.command(special_emoji_commands, ".") & filters.me)
+@Bonten.on_message(filters.command(special_emoji_commands, ".") & filters.me)
 async def special_emojis(_, message: Message):
     emoji = special_emojis_dict[message.command[0]]
     await message.delete()
-    await UserBot.send_dice(message.chat.id, emoji["emoji"])
+    await Bonten.send_dice(message.chat.id, emoji["emoji"])
 
 
 # Command help section
