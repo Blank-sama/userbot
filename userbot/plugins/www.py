@@ -6,15 +6,15 @@ from pyrogram import filters
 from pyrogram.raw import functions
 from pyrogram.types import Message
 
-from userbot import UserBot
-from userbot.helpers.PyroHelpers import SpeedConvert
-from userbot.helpers.constants import WWW
-from userbot.helpers.expand import expand_url
-from userbot.helpers.shorten import shorten_url
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.helpers.PyroHelpers import SpeedConvert
+from Bonten.helpers.constants import WWW
+from Bonten.helpers.expand import expand_url
+from Bonten.helpers.shorten import shorten_url
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(filters.command(["speed", "speedtest"], ".") & filters.me)
+@Bonten.on_message(filters.command(["speed", "speedtest"], ".") & filters.me)
 async def speed_test(_, message: Message):
     new_msg = await message.edit("`Running speed test . . .`")
     spd = speedtest.Speedtest()
@@ -46,13 +46,13 @@ async def speed_test(_, message: Message):
     )
 
 
-@UserBot.on_message(filters.command("dc", ".") & filters.me)
+@Bonten.on_message(filters.command("dc", ".") & filters.me)
 async def nearest_dc(_, message: Message):
     dc = await UserBot.send(functions.help.GetNearestDc())
     await message.edit(WWW.NearestDC.format(dc.country, dc.nearest_dc, dc.this_dc))
 
 
-@UserBot.on_message(filters.command("ping", ".") & filters.me)
+@Bonten.on_message(filters.command("ping", ".") & filters.me)
 async def ping_me(_, message: Message):
     """Ping the assistant"""
     start = time.time()
@@ -61,7 +61,7 @@ async def ping_me(_, message: Message):
     await reply.edit_text(f"**Pong!**\n`{delta_ping * 1000:.3f} ms`")
 
 
-@UserBot.on_message(filters.command("expand", ".") & filters.me)
+@Bonten.on_message(filters.command("expand", ".") & filters.me)
 async def expand(_, message: Message):
     if message.reply_to_message:
         url = message.reply_to_message.text or message.reply_to_message.caption
@@ -83,7 +83,7 @@ async def expand(_, message: Message):
         await message.edit("Nothing to expand")
 
 
-@UserBot.on_message(filters.command("shorten", ".") & filters.me)
+@Bonten.on_message(filters.command("shorten", ".") & filters.me)
 async def shorten(_, message: Message):
     keyword = None
 
