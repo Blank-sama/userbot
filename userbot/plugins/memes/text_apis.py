@@ -2,9 +2,9 @@ from aiohttp.client_exceptions import ClientError
 from pyrogram import filters
 from pyrogram.types import Message
 
-from userbot import UserBot, ALLOWED_USERS
-from userbot.helpers.aiohttp_helper import AioHttp
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten, ALLOWED_USERS
+from Bonten.helpers.aiohttp_helper import AioHttp
+from Bonten.plugins.help import add_command_help
 
 text_apis_data = {
     "compliment": {
@@ -48,7 +48,7 @@ for x in text_apis_data:
             text_api_commands.append(y)
 
 
-@UserBot.on_message(
+@Bonten.on_message(
     filters.command(text_api_commands, ".") & (filters.me | filters.user(ALLOWED_USERS))
 )
 async def text_api(_, message: Message):
