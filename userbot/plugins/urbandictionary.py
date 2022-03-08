@@ -1,15 +1,15 @@
 from pyrogram import filters
 from asyncio import sleep
-from userbot import UserBot
-from userbot.helpers.aiohttp_helper import AioHttp
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.helpers.aiohttp_helper import AioHttp
+from Bonten.plugins.help import add_command_help
 
 
 def replace_text(text):
     return text.replace('"', "").replace("\\r", "").replace("\\n", "").replace("\\", "")
 
 
-@UserBot.on_message(filters.me & filters.command(["ud"], "."))
+@Bonten.on_message(filters.me & filters.command(["ud"], "."))
 async def urban_dictionary(bot, message):
     if len(message.text.split()) == 1:
         await message.edit("Usage: `ud example`")
