@@ -3,8 +3,8 @@ from time import time
 
 from pyrogram.types import Message
 
-from userbot import UserBot
-from userbot.helpers.interval import IntervalHelper
+from Bonten import Bonten
+from Bonten.helpers.interval import IntervalHelper
 
 
 async def CheckAdmin(message: Message):
