@@ -3,11 +3,11 @@ import asyncio
 import aiohttp
 from pyrogram import filters
 from pyrogram.types import Message
-from userbot import UserBot
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(
+@Bonten.on_message(
     filters.command(["neko", "nekobin", "bin", "paste"], ".") & filters.me
 )
 async def paste(_, message: Message):
@@ -35,7 +35,7 @@ async def paste(_, message: Message):
         )
         if delete:
             await asyncio.gather(
-                UserBot.send_message(
+                Bonten.send_message(
                     message.chat.id, reply_text, disable_web_page_preview=True
                 ),
                 message.reply_to_message.delete(),
