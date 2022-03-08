@@ -1,9 +1,9 @@
 from pyrogram import emoji, filters
 from pyrogram.types import Message
 
-from userbot import UserBot
-from userbot.helpers.file_sending_helpers import send_saved_animation, send_saved_image
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.helpers.file_sending_helpers import send_saved_animation, send_saved_image
+from Bonten.plugins.help import add_command_help
 
 memes_data = {
     "judgement": {
@@ -140,7 +140,7 @@ for meme in memes_data:
     fixed_memes_help.append([command, memes_data[meme]["help"]])
 
 
-@UserBot.on_message(filters.command(memes, ".") & filters.me)
+@Bonten.on_message(filters.command(memes, ".") & filters.me)
 async def fixed_memes(_, message: Message):
     await message.delete()
 
