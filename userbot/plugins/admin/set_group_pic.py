@@ -4,12 +4,12 @@ from pyrogram import filters
 from pyrogram.methods.chats.get_chat_members import Filters as ChatMemberFilters
 from pyrogram.types import Message
 
-from userbot import UserBot
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(filters.command("setpic", ".") & filters.me)
-async def set_picture(bot: UserBot, message: Message):
+@Bonten.on_message(filters.command("setpic", ".") & filters.me)
+async def set_picture(bot: Bonten, message: Message):
     # First of all check if its a group or not
     if message.chat.type in ["group", "supergroup"]:
         # Here lies the sanity checks
@@ -33,7 +33,7 @@ async def set_picture(bot: UserBot, message: Message):
                 # If you replied to a message and it has a photo
                 if message.reply_to_message and message.reply_to_message.media:
                     file_id = message.reply_to_message.photo.file_id
-                    await UserBot.set_chat_photo(
+                    await Bonten.set_chat_photo(
                         message.chat.id, file_id
                     )
                     await message.edit(
