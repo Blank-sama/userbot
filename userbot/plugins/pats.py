@@ -3,12 +3,12 @@ import asyncio
 import aiohttp
 from pyrogram import filters
 from pyrogram.types import Message
-from userbot import UserBot
-from userbot.helpers.PyroHelpers import ReplyCheck, GetChatID
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.helpers.PyroHelpers import ReplyCheck, GetChatID
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(filters.command(["pat", "pats"], ".") & filters.me)
+@Bonten.on_message(filters.command(["pat", "pats"], ".") & filters.me)
 async def give_pats(_, message: Message):
     URL = "https://some-random-api.ml/animu/pat"
     async with aiohttp.ClientSession() as session:
@@ -19,7 +19,7 @@ async def give_pats(_, message: Message):
             url = result.get("link", None)
             await asyncio.gather(
                 message.delete(),
-                UserBot.send_video(
+                Bonten.send_video(
                     GetChatID(message), url, reply_to_message_id=ReplyCheck(message)
                 ),
             )
