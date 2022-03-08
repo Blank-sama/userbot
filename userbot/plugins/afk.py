@@ -5,9 +5,9 @@ import humanize
 from pyrogram import filters
 from pyrogram.types import Message
 
-from userbot import UserBot
-from userbot.helpers.PyroHelpers import GetChatID, ReplyCheck
-from userbot.plugins.help import add_command_help
+from Bonten import UserBot
+from Bonten.helpers.PyroHelpers import GetChatID, ReplyCheck
+from Bonten.plugins.help import add_command_help
 
 AFK = False
 AFK_REASON = ""
@@ -22,7 +22,7 @@ def subtract_time(start, end):
     return str(subtracted)
 
 
-@UserBot.on_message(
+@Bonten.on_message(
     ((filters.group & filters.mentioned) | filters.private) & ~filters.me & ~filters.service, group=3
 )
 async def collect_afk_messages(_, message: Message):
@@ -39,7 +39,7 @@ async def collect_afk_messages(_, message: Message):
                 f"Reason: ```{AFK_REASON.upper()}```\n"
                 f"See you after I'm done doing whatever I'm doing.`"
             )
-            await UserBot.send_message(
+            await Bonten.send_message(
                 chat_id=GetChatID(message),
                 text=text,
                 reply_to_message_id=ReplyCheck(message),
@@ -55,7 +55,7 @@ async def collect_afk_messages(_, message: Message):
                     f"I'll get to you when I get to you.\n"
                     f"No more auto messages for you`"
                 )
-                await UserBot.send_message(
+                await Bonten.send_message(
                     chat_id=GetChatID(message),
                     text=text,
                     reply_to_message_id=ReplyCheck(message),
@@ -69,7 +69,7 @@ async def collect_afk_messages(_, message: Message):
                     f"Still busy: ```{AFK_REASON.upper()}```\n"
                     f"Try pinging a bit later.`"
                 )
-                await UserBot.send_message(
+                await Bonten.send_message(
                     chat_id=GetChatID(message),
                     text=text,
                     reply_to_message_id=ReplyCheck(message),
@@ -78,7 +78,7 @@ async def collect_afk_messages(_, message: Message):
         CHAT_TYPE[GetChatID(message)] += 1
 
 
-@UserBot.on_message(filters.command("afk", ".") & filters.me, group=3)
+@Bonten.on_message(filters.command("afk", ".") & filters.me, group=3)
 async def afk_set(_, message: Message):
     global AFK_REASON, AFK, AFK_TIME
 
@@ -97,7 +97,7 @@ async def afk_set(_, message: Message):
     await message.delete()
 
 
-@UserBot.on_message(filters.command("afk", "!") & filters.me, group=3)
+@Bonten.on_message(filters.command("afk", "!") & filters.me, group=3)
 async def afk_unset(_, message: Message):
     global AFK, AFK_TIME, AFK_REASON, USERS, GROUPS
 
@@ -117,7 +117,7 @@ async def afk_unset(_, message: Message):
     await message.delete()
 
 
-@UserBot.on_message(filters.me, group=3)
+@Bonten.on_message(filters.me, group=3)
 async def auto_afk_unset(_, message: Message):
     global AFK, AFK_TIME, AFK_REASON, USERS, GROUPS
 
