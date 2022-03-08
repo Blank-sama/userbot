@@ -1,6 +1,6 @@
 from pyrogram.types import Message
 
-from userbot.database import database
+from Bonten.database import database
 
 
 class StickerDeleter:
@@ -41,4 +41,3 @@ class StickerDeleter:
             }
             self.sticker_table.delete_many(query)
             return True
-
