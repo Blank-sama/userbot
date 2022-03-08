@@ -3,9 +3,9 @@ import random
 
 from pyrogram import filters
 from pyrogram.types import Message
-from userbot import UserBot
-from userbot.helpers.PyroHelpers import ReplyCheck
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.helpers.PyroHelpers import ReplyCheck
+from Bonten.plugins.help import add_command_help
 
 sticker_data = {
     "mock": {
@@ -40,8 +40,8 @@ for x in sticker_data:
             sticker_commands.append(y)
 
 
-@UserBot.on_message(filters.command(sticker_commands, ".") & filters.me)
-async def sticker_super_func(bot: UserBot, message: Message):
+@Bonten.on_message(filters.command(sticker_commands, ".") & filters.me)
+async def sticker_super_func(bot: Bonten, message: Message):
     try:
         sticker = {}
         command = message.command[0]
