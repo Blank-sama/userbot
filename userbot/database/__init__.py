@@ -1,6 +1,6 @@
 import pymongo
 
-from userbot import IS_ATLAS, MONGO_URL, DB_NAME
+from Bonten import IS_ATLAS, MONGO_URL, DB_NAME
 
 
 def database():
@@ -10,7 +10,7 @@ def database():
             MONGO_URL,
         )
     else:
-        from userbot import DB_USERNAME, DB_PASSWORD
+        from Bonten import DB_USERNAME, DB_PASSWORD
 
         client = pymongo.MongoClient(
             MONGO_URL, username=DB_USERNAME, password=DB_PASSWORD
