@@ -7,4 +7,4 @@ if __name__ == "__main__":
 
     scheduler.start()
 
-    UserBot.run()
+    Bonten.run()
