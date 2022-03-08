@@ -1,12 +1,12 @@
 from pyrogram import filters, emoji
 from pyrogram.types import Message
-from userbot import UserBot, ALLOWED_USERS
-from userbot.plugins.help import add_command_help
+from Bonten import UserBot, ALLOWED_USERS
+from Bonten.plugins.help import add_command_help
 
-from userbot.helpers import spotify
+from Bonten.helpers import spotify
 
 
-@UserBot.on_message(filters.command(["np", "now", "nowplaying"], ".") & (filters.me | filters.user(ALLOWED_USERS)))
+@Bonten.on_message(filters.command(["np", "now", "nowplaying"], ".") & (filters.me | filters.user(ALLOWED_USERS)))
 async def now_playing(_, message: Message):
     current_track = await spotify.now_playing()
 
@@ -25,7 +25,7 @@ async def now_playing(_, message: Message):
     await message.edit(f'{emoji.MUSICAL_NOTE} Currently Playing: <a href="{link}">{song}</a>')
 
 
-@UserBot.on_message(filters.command(["sdev", "sdevices", "spotifydevices", "sd"], ".") & (filters.me | filters.user(ALLOWED_USERS)))
+@Bonten.on_message(filters.command(["sdev", "sdevices", "spotifydevices", "sd"], ".") & (filters.me | filters.user(ALLOWED_USERS)))
 async def list_devices(_, message: Message):
     current_devices = await spotify.list_devices()
 
@@ -45,7 +45,7 @@ async def list_devices(_, message: Message):
     await message.edit(device_msg)
 
 
-@UserBot.on_message(filters.command(["spause", "pause"], ".") & (filters.me))
+@Bonten.on_message(filters.command(["spause", "pause"], ".") & (filters.me))
 async def pause(_, message: Message):
     pause = await spotify.pause()
     if pause:
@@ -58,7 +58,7 @@ async def pause(_, message: Message):
         return
 
 
-@UserBot.on_message(filters.command(["splay", "play"], ".") & (filters.me))
+@Bonten.on_message(filters.command(["splay", "play"], ".") & (filters.me))
 async def play(_, message: Message):
     play = await spotify.play()
     if play:
