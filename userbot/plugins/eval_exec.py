@@ -7,19 +7,19 @@ import traceback
 from pyrogram import filters
 from pyrogram.types import Message
 
-from userbot import UserBot
-from userbot.database import database
-from userbot.helpers.PyroHelpers import ReplyCheck
+from Bonten import Bonten
+from Bonten.database import database
+from Bonten.helpers.PyroHelpers import ReplyCheck
 
 
-@UserBot.on_message(
+@Bonten.on_message(
     filters.command("eval", ".")
     & filters.me
     & ~filters.forwarded
     & ~filters.edited
     & ~filters.via_bot
 )
-async def evaluation_func(bot: UserBot, message: Message):
+async def evaluation_func(bot: Bonten, message: Message):
     status_message = await message.reply_text("Processing ...")
     cmd = message.text.split(" ", maxsplit=1)[1]
 
@@ -82,7 +82,7 @@ async def aexec(code, b, m, r, d):
     return await locals()["__aexec"](b, m, r, d)
 
 
-@UserBot.on_message(
+@Bonten.on_message(
     filters.command("exec", ".")
     & filters.me
     & ~filters.forwarded
