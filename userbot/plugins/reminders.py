@@ -2,12 +2,12 @@ from time import sleep
 
 from pyrogram import filters, emoji
 from pyrogram.types import Message
-from userbot import UserBot
-from userbot.database.reminders import Reminders
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.database.reminders import Reminders
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(filters.command("reminders", ".") & filters.me)
+@Bonten.on_message(filters.command("reminders", ".") & filters.me)
 async def show_all_reminders(_, message: Message):
     reminders = Reminders().get_all_reminders()
     if len(reminders) != 0:
@@ -25,7 +25,7 @@ async def show_all_reminders(_, message: Message):
         await message.delete()
 
 
-@UserBot.on_message(filters.command("remind", ".") & filters.me)
+@Bonten.on_message(filters.command("remind", ".") & filters.me)
 async def remind(_, message: Message):
     cmd = message.command
     remind_text = ""
@@ -47,7 +47,7 @@ async def remind(_, message: Message):
     await message.delete()
 
 
-@UserBot.on_message(filters.command("reminder", "!") & filters.me)
+@Bonten.on_message(filters.command("reminder", "!") & filters.me)
 async def delete_reminder(_, message: Message):
     cmd = message.command
     reminder_id = ""
