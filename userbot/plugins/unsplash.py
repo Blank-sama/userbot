@@ -2,12 +2,12 @@ import asyncio
 
 from pyrogram import filters
 from pyrogram.types import Message
-from userbot import UserBot
-from userbot.helpers.aiohttp_helper import AioHttp
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.helpers.aiohttp_helper import AioHttp
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(filters.command(["unsplash", "pic"], ".") & filters.me)
+@Bonten.on_message(filters.command(["unsplash", "pic"], ".") & filters.me)
 async def unsplash_pictures(_, message: Message):
     cmd = message.command
 
