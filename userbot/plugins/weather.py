@@ -4,11 +4,11 @@ from html import escape
 import aiohttp
 from pyrogram import filters
 from pyrogram.types import Message
-from userbot import UserBot
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(filters.command(["weather", "w"], ".") & filters.me)
+@Bonten.on_message(filters.command(["weather", "w"], ".") & filters.me)
 async def get_weather(_, message: Message):
     if len(message.command) == 1:
         await message.edit("Usage: `.weather Maldives`")
