@@ -5,11 +5,11 @@ from asyncio import sleep
 from pyrogram import filters
 from pyrogram.types import Message
 
-from userbot import UserBot
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(filters.me & filters.command(["q"], '.'))
+@Bonten.on_message(filters.me & filters.command(["q"], '.'))
 async def quotly(bot: UserBot, message: Message):
     if not message.reply_to_message:
         await message.edit("Reply to any users text message")
