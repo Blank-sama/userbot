@@ -4,13 +4,13 @@ from asyncio import sleep
 from pyrogram import filters
 from pyrogram.types import Message
 
-from userbot import UserBot
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.plugins.help import add_command_help
 
 CARBON_LANG = "py"
 
 
-@UserBot.on_message(filters.command("carbon", ".") & filters.me)
+@Bonten.on_message(filters.command("carbon", ".") & filters.me)
 async def carbon_test(_, message: Message):
     """
     Receives text and makes a carbon image using the text
@@ -19,20 +19,20 @@ async def carbon_test(_, message: Message):
     carbon_text = message.text[8:]
 
     # Write the code to a file cause carbon-now-cli wants a file.
-    file = "userbot/downloads/carbon.{}".format(get_carbon_lang())
+    file = "Bonten/downloads/carbon.{}".format(get_carbon_lang())
     with open(file, "w+") as f:
         f.write(carbon_text)
 
     await message.edit_text("Carbonizing code...")
     # Do the thing
-    os.system("carbon-now -h -t userbot/downloads/carbon {}".format(file))
+    os.system("carbon-now -h -t Bonten/downloads/carbon {}".format(file))
     # await message.edit_text("Carbonizing completed...")
     # Send the thing
-    await UserBot.send_photo(message.chat.id, "userbot/downloads/carbon.png")
+    await Bonten.send_photo(message.chat.id, "Bonten/downloads/carbon.png")
     await message.delete()
 
 
-@UserBot.on_message(filters.command("carbonlang", ".") & filters.me)
+@Bonten.on_message(filters.command("carbonlang", ".") & filters.me)
 async def update_carbon_lang(_, message: Message):
     """
     Set language to use Carbon with.
@@ -58,7 +58,7 @@ async def update_carbon_lang(_, message: Message):
     await message.delete()
 
 
-@UserBot.on_message(filters.command("carbonlang", "!") & filters.me)
+@Bonten.on_message(filters.command("carbonlang", "!") & filters.me)
 async def send_carbon_lang(_, message: Message):
     """
     Edits message to show current set carbon language
