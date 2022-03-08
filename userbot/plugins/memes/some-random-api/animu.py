@@ -3,15 +3,15 @@ import asyncio
 from pyrogram import filters
 from pyrogram.types import Message
 
-from userbot import UserBot
-from userbot.helpers.PyroHelpers import ReplyCheck
-from userbot.helpers.aiohttp_helper import AioHttp
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.helpers.PyroHelpers import ReplyCheck
+from Bonten.helpers.aiohttp_helper import AioHttp
+from Bonten.plugins.help import add_command_help
 
 gif_categories = ['wink', 'pat', 'hug', 'face-palm']
 
 
-@UserBot.on_message(filters.command(["animu-gif", "anime-gif"], ".") & filters.me)
+@Bonten.on_message(filters.command(["animu-gif", "anime-gif"], ".") & filters.me)
 async def animu_gifs(_, message: Message):
     cmd = message.command
 
@@ -35,7 +35,7 @@ async def animu_gifs(_, message: Message):
             await message.delete()
         else:
             await message.delete()
-            await UserBot.send_animation(
+            await Bonten.send_animation(
                 chat_id=message.chat.id,
                 animation=gif,
                 reply_to_message_id=ReplyCheck(message)
@@ -46,7 +46,7 @@ async def animu_gifs(_, message: Message):
         await message.delete()
 
 
-@UserBot.on_message(filters.command(["animu-quote", "anime-quote"], ".") & filters.me)
+@Bonten.on_message(filters.command(["animu-quote", "anime-quote"], ".") & filters.me)
 async def animu_fact(_, message: Message):
     try:
         data = await AioHttp().get_json('https://some-random-api.ml/animu/quote')
