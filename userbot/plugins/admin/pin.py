@@ -4,12 +4,12 @@ from pyrogram import filters
 from pyrogram.methods.chats.get_chat_members import Filters as ChatMemberFilters
 from pyrogram.types import Message
 
-from userbot import UserBot
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(filters.command("pin", ".") & filters.me)
-async def pin_message(bot: UserBot, message: Message):
+@Bonten.on_message(filters.command("pin", ".") & filters.me)
+async def pin_message(bot: Bonten, message: Message):
     # First of all check if its a group or not
     if message.chat.type in ["group", "supergroup"]:
         # Here lies the sanity checks
