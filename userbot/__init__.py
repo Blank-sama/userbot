@@ -7,7 +7,7 @@ from logging.handlers import TimedRotatingFileHandler
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
-from userbot.userbot import UserBot
+from Bonten.Bonten import Bonten
 
 # Created logs folder if it is not there. Needed for logging.
 if not os.path.exists('logs'):
@@ -19,7 +19,7 @@ logging.basicConfig(
     level=logging.WARNING,
     handlers=[
         TimedRotatingFileHandler(
-            "logs/userbot.log",
+            "logs/Bonten.log",
             when="midnight",
             encoding=None,
             delay=False,
@@ -34,16 +34,16 @@ LOGS = logging.getLogger(__name__)
 __version__ = "0.2.0"
 __author__ = "athphane"
 
-UserBot = UserBot(__version__)
+Bonten = Bonten(__version__)
 
 # Read from config file
-config_file = 'userbot.ini'
+config_file = 'Bonten.ini'
 config = ConfigParser()
 config.read(config_file)
 
 # MongoDB details
 MONGO_URL = config.get("mongo", "url")
-DB_NAME = config.get("mongo", "db_name", fallback="userbot")
+DB_NAME = config.get("mongo", "db_name", fallback="Bonten")
 DB_USERNAME = config.get("mongo", "db_username")
 DB_PASSWORD = config.get("mongo", "db_password")
 IS_ATLAS = config.getboolean("mongo", "is_atlas", fallback=False)
