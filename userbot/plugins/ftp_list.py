@@ -3,13 +3,13 @@ import shutil
 from pyrogram import filters
 from pyrogram.types import Message
 
-from userbot import UserBot
-from userbot.helpers.ftp_crawler import get_ftp_files
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.helpers.ftp_crawler import get_ftp_files
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(filters.command("ftp", ".") & filters.me)
-async def ftp_list(bot: UserBot, message: Message):
+@Bonten.on_message(filters.command("ftp", ".") & filters.me)
+async def ftp_list(bot: Bonten, message: Message):
     await message.edit('Crawling seedbox')
 
     await get_ftp_files()
