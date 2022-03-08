@@ -4,15 +4,15 @@ from functools import partial
 from pyrogram import filters
 from pyrogram.types import Message
 
-from userbot import UserBot
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.plugins.help import add_command_help
 
 mention = partial("<a href='tg://user?id={}'>{}</a>".format)
 
 hmention = partial("<a href='tg://user?id={}'>\u200B</a>{}".format)
 
 
-@UserBot.on_message(filters.command("mention", ".") & filters.me)
+@Bonten.on_message(filters.command("mention", ".") & filters.me)
 async def mention_user(_, message: Message):
     if len(message.command) < 3:
         await message.edit("Incorrect format\nExample: .mention @Athfan CTO")
@@ -20,7 +20,7 @@ async def mention_user(_, message: Message):
         await message.delete()
         return
     try:
-        user = await UserBot.get_users(message.command[1])
+        user = await Bonten.get_users(message.command[1])
     except Exception:
         await message.edit("User not found")
         await asyncio.sleep(3)
@@ -31,7 +31,7 @@ async def mention_user(_, message: Message):
     await message.edit(_mention)
 
 
-@UserBot.on_message(filters.command("hmention", ".") & filters.me)
+@Bonten.on_message(filters.command("hmention", ".") & filters.me)
 async def hidden_mention(_, message: Message):
     if len(message.command) < 3:
         await message.edit("Incorrect format\nExample: .hmention @Athfan")
@@ -39,7 +39,7 @@ async def hidden_mention(_, message: Message):
         await message.delete()
         return
     try:
-        user = await UserBot.get_users(message.command[1])
+        user = await Bonten.get_users(message.command[1])
     except Exception:
         await message.edit("User not found")
         await asyncio.sleep(3)
