@@ -1,21 +1,21 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from userbot import UserBot
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.plugins.help import add_command_help
 
 the_regex = r"^r\/([^\s\/])+"
 
 f = filters.chat([])
 
 
-@UserBot.on_message(f)
+@Bonten.on_message(f)
 async def auto_read(_, message: Message):
-    await UserBot.read_history(message.chat.id)
+    await Bonten.read_history(message.chat.id)
     message.continue_propagation()
 
 
-@UserBot.on_message(filters.command("autoscroll", ".") & filters.me)
+@Bonten.on_message(filters.command("autoscroll", ".") & filters.me)
 async def add_to_auto_read(_, message: Message):
     if message.chat.id in f:
         f.remove(message.chat.id)
