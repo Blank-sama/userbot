@@ -4,7 +4,7 @@ import humanize
 from pyrogram import filters
 from pyrogram.types import Message
 
-from Bonten import UserBot
+from Bonten import Bonten
 
 
 async def progress_callback(current, total, bot: UserBot, message: Message):
