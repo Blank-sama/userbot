@@ -2,8 +2,8 @@ import time
 
 from pyrogram import filters
 from pyrogram.types import Message
-from userbot import UserBot
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.plugins.help import add_command_help
 
 
 class Custom(dict):
@@ -11,13 +11,13 @@ class Custom(dict):
         return 0
 
 
-@UserBot.on_message(filters.command("wordcount", ".") & filters.me)
+@Bonten.on_message(filters.command("wordcount", ".") & filters.me)
 async def word_count(_, message: Message):
     await message.delete()
     words = Custom()
-    progress = await UserBot.send_message(message.chat.id, "`Processed 0 messages...`")
+    progress = await Bonten.send_message(message.chat.id, "`Processed 0 messages...`")
     total = 0
-    async for msg in UserBot.iter_history(message.chat.id, 1000):
+    async for msg in Bonten.iter_history(message.chat.id, 1000):
         total += 1
         if total % 100 == 0:
             await progress.edit_text(f"`Processed {total} messages...`")
