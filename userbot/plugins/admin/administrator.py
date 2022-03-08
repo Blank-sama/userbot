@@ -4,14 +4,14 @@ from pyrogram import filters
 from pyrogram.errors import UserAdminInvalid
 from pyrogram.types import Message, ChatPermissions
 
-from userbot import UserBot
-from userbot.helpers.PyroHelpers import GetUserMentionable
-from userbot.helpers.adminHelpers import CheckAdmin, CheckReplyAdmin, RestrictFailed
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.helpers.PyroHelpers import GetUserMentionable
+from Bonten.helpers.adminHelpers import CheckAdmin, CheckReplyAdmin, RestrictFailed
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(filters.command('ban', '.') & filters.me)
-async def ban_hammer(bot: UserBot, message: Message):
+@Bonten.on_message(filters.command('ban', '.') & filters.me)
+async def ban_hammer(bot: Bonten, message: Message):
     duration = int(message.command[1]) if len(message.command) > 1 else False
 
     if await CheckReplyAdmin(message) and await CheckAdmin(message):
@@ -34,8 +34,8 @@ async def ban_hammer(bot: UserBot, message: Message):
             await RestrictFailed(message)
 
 
-@UserBot.on_message(filters.command("unban", ".") & filters.me)
-async def unban(bot: UserBot, message: Message):
+@Bonten.on_message(filters.command("unban", ".") & filters.me)
+async def unban(bot: Bonten, message: Message):
     if await CheckReplyAdmin(message) and await CheckAdmin(message):
         try:
             mention = GetUserMentionable(message.reply_to_message.from_user)
@@ -68,8 +68,8 @@ mute_permission = ChatPermissions(
 )
 
 
-@UserBot.on_message(filters.command('mute', '.') & filters.me)
-async def mute_hammer(bot: UserBot, message: Message):
+@Bonten.on_message(filters.command('mute', '.') & filters.me)
+async def mute_hammer(bot: Bonten, message: Message):
     duration = int(message.command[1]) if len(message.command) > 1 else False
 
     if await CheckReplyAdmin(message) and await CheckAdmin(message):
@@ -110,8 +110,8 @@ unmute_permissions = ChatPermissions(
 )
 
 
-@UserBot.on_message(filters.command("unmute", ".") & filters.me)
-async def unmute(bot: UserBot, message: Message):
+@Bonten.on_message(filters.command("unmute", ".") & filters.me)
+async def unmute(bot: Bonten, message: Message):
     if await CheckReplyAdmin(message) and await CheckAdmin(message):
         try:
             mention = GetUserMentionable(message.reply_to_message.from_user)
@@ -127,8 +127,8 @@ async def unmute(bot: UserBot, message: Message):
             await RestrictFailed(message)
 
 
-@UserBot.on_message(filters.command("kick", ".") & filters.me)
-async def kick_user(bot: UserBot, message: Message):
+@Bonten.on_message(filters.command("kick", ".") & filters.me)
+async def kick_user(bot: Bonten, message: Message):
     if await CheckReplyAdmin(message) and await CheckAdmin(message):
         try:
             mention = GetUserMentionable(message.reply_to_message.from_user)
