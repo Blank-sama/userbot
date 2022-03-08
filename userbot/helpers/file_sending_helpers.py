@@ -3,8 +3,8 @@ import os.path
 
 from pyrogram.types import Message
 
-from userbot import UserBot
-from userbot.helpers.PyroHelpers import ReplyCheck, GetChatID
+from Bonten import Bonten
+from Bonten.helpers.PyroHelpers import ReplyCheck, GetChatID
 
 
 def reset_file_ids():
