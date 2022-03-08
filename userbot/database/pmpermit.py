@@ -1,4 +1,4 @@
-from userbot.database import database
+from Bonten.database import database
 
 
 class PmPermit:
