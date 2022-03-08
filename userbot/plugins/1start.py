@@ -6,15 +6,15 @@ from pyrogram import filters
 from pyrogram.types import Message
 from pyrogram import __version__
 
-from userbot import UserBot, START_TIME
-from userbot.helpers.constants import First
-from userbot.plugins.help import add_command_help
+from Bonten import UserBot, START_TIME
+from Bonten.helpers.constants import First
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(filters.command("alive", ".") & filters.me)
+@Bonten.on_message(filters.command("alive", ".") & filters.me)
 async def alive(_, message: Message):
     txt = (
-        f"**{UserBot.__class__.__name__}** ```RUNNING```\n"
+        f"**{Userbot.__class__.__name__}** ```RUNNING```\n"
         f"-> Current Uptime: `{str(datetime.now() - START_TIME).split('.')[0]}`\n"
         f"-> Python: `{python_version()}`\n"
         f"-> Pyrogram: `{__version__}`"
@@ -22,24 +22,24 @@ async def alive(_, message: Message):
     await message.edit(txt)
 
 
-@UserBot.on_message(filters.command("repo", ".") & filters.me)
+@Bonten.on_message(filters.command("repo", ".") & filters.me)
 async def repo(_, message: Message):
     await message.edit(First.REPO)
 
 
-@UserBot.on_message(filters.command("creator", ".") & filters.me)
+@Bonten.on_message(filters.command("creator", ".") & filters.me)
 async def creator(_, message: Message):
     await message.edit(First.CREATOR)
 
 
-@UserBot.on_message(filters.command(["uptime", "up"], ".") & filters.me)
+@Bonten.on_message(filters.command(["uptime", "up"], ".") & filters.me)
 async def uptime(_, message: Message):
     now = datetime.now()
     current_uptime = now - START_TIME
     await message.edit(f"Current Uptime\n" f"```{str(current_uptime).split('.')[0]}```")
 
 
-@UserBot.on_message(filters.command("id", ".") & filters.me)
+@Bonten.on_message(filters.command("id", ".") & filters.me)
 async def get_id(_, message: Message):
     file_id = None
     user_id = None
@@ -135,9 +135,9 @@ async def get_id(_, message: Message):
         await message.edit(f"**Chat ID**: `{message.chat.id}`")
 
 
-@UserBot.on_message(filters.command("restart", ".") & filters.me)
+@Bonten.on_message(filters.command("restart", ".") & filters.me)
 async def restart(_, message: Message):
-    await message.edit(f"Restarting {UserBot.__class__.__name__}.")
+    await message.edit(f"Restarting {Userbot.__class__.__name__}.")
     await UserBot.send_message(
         "me", f"#userbot_restart, {message.chat.id}, {message.message_id}"
     )
