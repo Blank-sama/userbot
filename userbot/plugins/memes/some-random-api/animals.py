@@ -4,10 +4,10 @@ import re
 from pyrogram import filters
 from pyrogram.types import Message
 
-from userbot import UserBot
-from userbot.helpers.PyroHelpers import ReplyCheck
-from userbot.helpers.aiohttp_helper import AioHttp
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.helpers.PyroHelpers import ReplyCheck
+from Bonten.helpers.aiohttp_helper import AioHttp
+from Bonten.plugins.help import add_command_help
 
 animal = r"([^.]*)$"
 ok_exts = ["jpg", "jpeg", "png"]
@@ -30,7 +30,7 @@ async def prep_animal_image(input_animal):
     return image
 
 
-@UserBot.on_message(filters.command(animals_without_facts, ["."]) & filters.me)
+@Bonten.on_message(filters.command(animals_without_facts, ["."]) & filters.me)
 async def animal_image(_, message: Message):
     cmd = message.command
 
@@ -39,14 +39,14 @@ async def animal_image(_, message: Message):
 
     if cmd[0].lower() in animals_without_facts:
         await message.delete()
-        await UserBot.send_photo(
+        await Bonten.send_photo(
             chat_id=message.chat.id,
             photo=await prep_animal_image(cmd[0].lower()),
             reply_to_message_id=ReplyCheck(message),
         )
 
 
-@UserBot.on_message(filters.command("fact", ".") & filters.me)
+@Bonten.on_message(filters.command("fact", ".") & filters.me)
 async def fact(_, message: Message):
     cmd = message.command
 
