@@ -1,5 +1,5 @@
-from userbot.database import database
-from userbot.helpers.utility import get_random_hex
+from Bonten.database import database
+from Bonten.helpers.utility import get_random_hex
 
 
 class Reminders:
