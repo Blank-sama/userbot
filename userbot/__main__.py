@@ -1,9 +1,9 @@
-import userbot
-from userbot import UserBot
-from userbot import scheduler
+import Bonten
+from Bonten import Bonten
+from Bonten import scheduler
 
 if __name__ == "__main__":
-    userbot.client = UserBot
+    Bonten.client = Bonten
 
     scheduler.start()
 
