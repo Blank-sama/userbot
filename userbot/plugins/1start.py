@@ -6,7 +6,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 from pyrogram import __version__
 
-from Bonten import UserBot, START_TIME
+from Bonten import Bonten, START_TIME
 from Bonten.helpers.constants import First
 from Bonten.plugins.help import add_command_help
 
@@ -14,7 +14,7 @@ from Bonten.plugins.help import add_command_help
 @Bonten.on_message(filters.command("alive", ".") & filters.me)
 async def alive(_, message: Message):
     txt = (
-        f"**{Userbot.__class__.__name__}** ```RUNNING```\n"
+        f"**{Bonten.__class__.__name__}** ```RUNNING```\n"
         f"-> Current Uptime: `{str(datetime.now() - START_TIME).split('.')[0]}`\n"
         f"-> Python: `{python_version()}`\n"
         f"-> Pyrogram: `{__version__}`"
@@ -137,19 +137,19 @@ async def get_id(_, message: Message):
 
 @Bonten.on_message(filters.command("restart", ".") & filters.me)
 async def restart(_, message: Message):
-    await message.edit(f"Restarting {Userbot.__class__.__name__}.")
-    await UserBot.send_message(
-        "me", f"#userbot_restart, {message.chat.id}, {message.message_id}"
+    await message.edit(f"Restarting {Bonten.__class__.__name__}.")
+    await Bonten.send_message(
+        "me", f"#Bonten_restart, {message.chat.id}, {message.message_id}"
     )
 
     if "p" in message.text and "g" in message.text:
-        asyncio.get_event_loop().create_task(UserBot.restart(git_update=True, pip=True))
+        asyncio.get_event_loop().create_task(Bonten.restart(git_update=True, pip=True))
     elif "p" in message.text:
-        asyncio.get_event_loop().create_task(UserBot.restart(pip=True))
+        asyncio.get_event_loop().create_task(Bonten.restart(pip=True))
     elif "g" in message.text:
-        asyncio.get_event_loop().create_task(UserBot.restart(git_update=True))
+        asyncio.get_event_loop().create_task(Bonten.restart(git_update=True))
     else:
-        asyncio.get_event_loop().create_task(UserBot.restart())
+        asyncio.get_event_loop().create_task(Bonten.restart())
 
 
 # Command help section
