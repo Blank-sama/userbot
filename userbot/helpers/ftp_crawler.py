@@ -2,7 +2,7 @@ import os
 
 from ftpretty import ftpretty
 
-from userbot import config
+from Bonten import config
 
 host = config.get('seedbox', 'host', fallback=None)
 username = config.get('seedbox', 'username', fallback=None)
