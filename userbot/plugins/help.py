@@ -4,13 +4,13 @@ from prettytable import PrettyTable
 from pyrogram import filters
 from pyrogram.types import Message
 
-from userbot import UserBot, CMD_HELP
-from userbot.helpers.utility import split_list
+from Bonten import Bonten, CMD_HELP
+from Bonten.helpers.utility import split_list
 
 heading = "──「 **{0}** 」──\n"
 
 
-@UserBot.on_message(filters.command("help", ".") & filters.me)
+@Bonten.on_message(filters.command("help", ".") & filters.me)
 async def module_help(_, message: Message):
     cmd = message.command
 
@@ -25,7 +25,7 @@ async def module_help(_, message: Message):
 
         ac = PrettyTable()
         ac.header = False
-        ac.title = "UserBot Modules"
+        ac.title = "Bonten Modules"
         ac.align = "l"
 
         for x in split_list(sorted(CMD_HELP.keys()), 2):
