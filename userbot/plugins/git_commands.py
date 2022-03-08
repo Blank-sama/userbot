@@ -12,19 +12,19 @@ from pyrogram.types import Message
 from reportlab.graphics import renderPM
 from svglib.svglib import svg2rlg
 
-from userbot import UserBot
-from userbot.helpers.PyroHelpers import ReplyCheck
-from userbot.helpers.aiohttp_helper import AioHttp
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten
+from Bonten.helpers.PyroHelpers import ReplyCheck
+from Bonten.helpers.aiohttp_helper import AioHttp
+from Bonten.plugins.help import add_command_help
 
 
-@UserBot.on_message(filters.command(["lastcommit", "lc"], ".") & filters.me)
+@Bonten.on_message(filters.command(["lastcommit", "lc"], ".") & filters.me)
 async def last_commit(_, message: Message):
     repo = git.Repo(os.getcwd())
     master = repo.head.reference
     commit = master.commit.message.strip()
     commit_id = master.commit.hexsha
-    commit_link = f"<a href='https://github.com/athphane/userbot/commit/{commit_id}'>{commit_id[:7]}</a>"
+    commit_link = f"<a href='https://github.com/athphane/Bonten/commit/{commit_id}'>{commit_id[:7]}</a>"
     author = master.commit.author.name
     date_time = datetime.datetime.fromtimestamp(master.commit.committed_date)
     commit_msg = (
@@ -34,7 +34,7 @@ async def last_commit(_, message: Message):
     await message.edit(commit_msg, disable_web_page_preview=True)
 
 
-@UserBot.on_message(filters.command(["ggraph", "commitgraph"], ".") & filters.me)
+@Bonten.on_message(filters.command(["ggraph", "commitgraph"], ".") & filters.me)
 async def commit_graph(_, message: Message):
     if len(message.command) < 2:
         await message.edit(
@@ -64,7 +64,7 @@ async def commit_graph(_, message: Message):
         return
 
     await asyncio.gather(
-        UserBot.send_photo(
+        Bonten.send_photo(
             chat_id=message.chat.id,
             photo=f"{file_name}.png",
             caption=git_user,
