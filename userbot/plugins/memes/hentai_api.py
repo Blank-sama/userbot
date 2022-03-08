@@ -2,9 +2,9 @@ from aiohttp.client_exceptions import ClientError
 from pyrogram import filters
 from pyrogram.types import Message
 
-from userbot import UserBot, ALLOWED_USERS
-from userbot.helpers.aiohttp_helper import AioHttp
-from userbot.plugins.help import add_command_help
+from Bonten import Bonten, ALLOWED_USERS
+from Bonten.helpers.aiohttp_helper import AioHttp
+from Bonten.plugins.help import add_command_help
 
 cf_api_data = {
     "anime": {
@@ -54,10 +54,10 @@ for x in cf_api_data:
             text_api_commands.append(y)
 
 
-@UserBot.on_message(
+@Bonten.on_message(
     filters.command(text_api_commands, ".") & filters.me
 )
-async def hentai_api(bot: UserBot, message: Message):
+async def hentai_api(bot: Bonten, message: Message):
     cmd = message.command
     api_key = cmd[0]
     api = cf_api_data[api_key]
