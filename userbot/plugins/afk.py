@@ -5,7 +5,7 @@ import humanize
 from pyrogram import filters
 from pyrogram.types import Message
 
-from Bonten import UserBot
+from Bonten import Bonten
 from Bonten.helpers.PyroHelpers import GetChatID, ReplyCheck
 from Bonten.plugins.help import add_command_help
 
