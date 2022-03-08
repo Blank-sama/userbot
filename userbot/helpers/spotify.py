@@ -2,7 +2,7 @@ import spotipy
 import spotipy.util as util
 from spotipy import SpotifyException
 
-from userbot import SPOTIFY_USERNAME, SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET
+from Bonten import SPOTIFY_USERNAME, SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET
 
 redirect_uri = "http://localhost:8888/callback"
 scope = 'user-read-currently-playing app-remote-control'
